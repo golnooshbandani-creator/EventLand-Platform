@@ -6,6 +6,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('user-email');
     const commentTextarea = document.getElementById('feedback-improve');
     const ratingGroup = document.getElementById('ratingGroup'); // برای پیدا کردن رادیو باتن‌ها
+
+    if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('user-email').value.trim();
+    const comment = document.getElementById('feedback-improve').value.trim();
+    const rating = document.querySelector('input[name="rating"]:checked');
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+}
+
+
+    if (!validateEmail(email)) { alert('ایمیل معتبر نیست'); return; }
+    if (!comment) { alert('پیام خالی است'); return; }
+    if (!rating) { alert('به رویداد امتیاز بده'); return; }
+
+        const fd = new FormData(form);
+    try {
+      const res = await fetch('submit_survey.php', {
+        method: 'POST',
+        body: fd
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert('نظر شما ثبت شد ✅');
+        form.reset();
+      } else {
+        alert(data.error || 'خطا در ثبت');
+      }
+    } catch (err) {
+      alert('خطا در ارتباط با سرور');
+    }
+  });
+
+
+
     
     // انتخاب محل‌های نمایش خطا و وضعیت
     const emailError = document.getElementById('emailError');
