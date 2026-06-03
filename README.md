@@ -39,6 +39,7 @@ EventLand-Platform/
 git clone https://github.com/golnooshbandani-creator/EventLand-Platform.git
 
 سپس فایل index.html را در مرورگر باز کنید.
+https://eventland-platform.netlify.app 
 
 توسعه‌دهنده
 گلنوش بندانی
@@ -78,6 +79,7 @@ EventLand-Platform/
 How to Run
 git clone https://github.com/golnooshbandani-creator/EventLand-Platform.git
 Then open index.html in your browser
+link: https://eventland-platform.netlify.app
 
 Developer
 Golnoosh Bandani
